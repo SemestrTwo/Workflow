@@ -1,0 +1,20 @@
+{
+  "_comment": "/tour/:tourname/:cityname"
+}
+
+
+{
+  "cityname": "New York",
+  "comments": "Arcu ante orci elementum pellentesque.",
+  "photos": [{
+    "photo": "https://www.eso.org/public/spain/images/eso1028a/",
+    "photo": "http://www.hamnisenja.no/picture-gallery/",
+    "photo": "https://boracaycompass.com/pictures/",
+    "photo": "https://www.pexels.com/search/summer/",
+    "photo": "http://www.hamnisenja.no/picture-gallery/",
+    "photo": "http://wineflow.hu/2016/07/20/borajanlo-nyari-kedvencek-1-resz/",
+    "photo": "https://www.eso.org/public/spain/images/eso1028a/",
+    "photo": "https://www.pexels.com/search/color:%20green/",
+    "photo": "https://boracaycompass.com/pictures/"
+  }]
+}

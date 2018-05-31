@@ -1,0 +1,353 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.0.1",
+    "title": "Instagrem"
+  },
+  "host": "localhost:10010",
+  "basePath": "/api/v1",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/tour": {
+      "x-swagger-router-controller": "get_products",
+      "post": {
+        "tags": [
+          "tour"
+        ],
+        "summary": "Create tour",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "createTour",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created tour object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TOUR"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/tour/{tourname}": {
+      "x-swagger-router-controller": "get_products",
+      "get": {
+        "tags": [
+          "tour"
+        ],
+        "summary": "Get tour by tourname",
+        "description": "",
+        "operationId": "getTourByName",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "tourname",
+            "in": "path",
+            "description": "The tour that needs to be fetched.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/TOUR"
+            }
+          },
+          "400": {
+            "description": "Invalid tour supplied"
+          },
+          "404": {
+            "description": "Tour not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "tour"
+        ],
+        "summary": "Updated tour",
+        "description": "This can only be done by the logged in user",
+        "operationId": "updateTour",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "tourname",
+            "in": "path",
+            "description": "Tour name that need to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated tour object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TOUR"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid tour supplied"
+          },
+          "404": {
+            "description": "Tour not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "tour"
+        ],
+        "summary": "Delete tour",
+        "description": "This can only be done by the logged in user",
+        "operationId": "deleteTour",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "tourname",
+            "in": "path",
+            "description": "The tour that needs to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid tourname supplied"
+          },
+          "404": {
+            "description": "Tour not found"
+          }
+        }
+      }
+    },
+    "/tour/{tourname}/{citiesname}": {
+      "x-swagger-router-controller": "get_products",
+      "get": {
+        "tags": [
+          "city"
+        ],
+        "summary": "Get info about event on this point",
+        "operationId": "GetPoint",
+        "description": "Returns a single info about event",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "tourname",
+            "in": "path",
+            "description": "The tour that needs to be fetched.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "citiesname",
+            "in": "path",
+            "description": "The city name that needs to be fetched.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Cities"
+              },
+              "xml": {
+                "name": "city"
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occured",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "city"
+        ],
+        "summary": "Update info about event on this point",
+        "operationId": "UpdateInfoPoint",
+        "description": "",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "tourname",
+            "in": "path",
+            "description": "Tour name that need to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "citiesname",
+            "in": "path",
+            "description": "City name that need to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated city object",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Cities"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "An unexpected error occured",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "city"
+        ],
+        "summary": "Delete point",
+        "description": "",
+        "operationId": "deletePoint",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "tourname",
+            "in": "path",
+            "description": "The tour that needs to be deleted",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "citiesname",
+            "in": "path",
+            "description": "City name that need to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid tourname supplied"
+          },
+          "404": {
+            "description": "Tour not found"
+          }
+        }
+      }
+    },
+    "/swagger": {
+      "x-swagger-pipe": "swagger_raw"
+    }
+  },
+  "definitions": {
+    "TOUR": {
+      "type": "object",
+      "properties": {
+        "tourname": {
+          "type": "string"
+        },
+        "time": {
+          "type": "string",
+          "description": "Name of tour"
+        },
+        "cities": {
+          "$ref": "#/definitions/Cities"
+        }
+      }
+    },
+    "Cities": {
+      "type": "object",
+      "properties": {
+        "cityname": {
+          "type": "string"
+        },
+        "comments": {
+          "type": "string",
+          "description": "comments about tour"
+        },
+        "photos": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "photoUrl": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "Error": {
+      "required": [
+        "message"
+      ],
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "responses": {
+    "Standard500ErrorResponse": {
+      "description": "An unexpected error occured",
+      "schema": {
+        "$ref": "#/definitions/Error"
+      }
+    }
+  }
+}
